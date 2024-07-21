@@ -1,0 +1,55 @@
+using System;
+
+namespace ArchitectArithmetic
+{
+    class Program
+    {
+        public static void Main(string[] args)
+        {
+            string result = CalculateTotalCost();
+            Console.WriteLine(result);
+        }
+        public static double TotalCost(double area, double cost = 180)
+        {
+            return Math.Round(area * cost, 2);
+        }
+        public static double Rectangle(double length, double width)
+        {
+            return length * width;
+        }
+        public static double Triangle(double bottom, double height)
+        {
+            return 0.5 * bottom * height;
+        }
+        public static double Circle(double radius)
+        {
+            return Math.PI * Math.Pow(radius, 2);
+        }
+        public static string CalculateTotalCost()
+        {
+            Console.WriteLine("What monument would you like to work with?\nTeotihuacan ? Type 1, Taj Mahal ? Type 2, Great Mosque ? Type 3 ");
+            string monument = Console.ReadLine();
+            
+            switch (monument)
+            {
+                case "1":
+                    double surfaceTeo = Rectangle(1500, 2500) + Triangle(750, 500) + Circle(187.5);
+                    double costTeo = TotalCost(surfaceTeo, 180);
+                    return $"The plan for that monument costs {costTeo} pesos!";
+                case "2":
+                    double surfaceTM = Rectangle(90.5, 90.5) - (Triangle(24, 24) * 4);
+                    double costTM = TotalCost(surfaceTM, 180);
+                    return $"The plan for that monument costs {costTM} pesos!";
+                case "3":
+                    double surfaceGM = Rectangle(180, 106) + Rectangle(264, 200) + Triangle(84, 264);
+                    double costGM = TotalCost(surfaceGM, 180);
+                    return $"The plan for that monument costs {costGM} pesos!";
+                default:
+                    Console.WriteLine("You didn't enter a valid value.");
+                    return "";
+                
+            }
+            
+        }
+    }
+}
